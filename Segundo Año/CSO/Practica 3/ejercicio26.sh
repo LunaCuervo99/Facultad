@@ -14,11 +14,13 @@ then
   exit 1
 else
   inexistentes=0
+  indice=1
   for i in $*
   do
-    if [ $(expr $i % 2) -eq 0 ];
+    if [ $(expr $indice % 2) -eq 0 ];
     then
       echo "es par"  
+      let indice++
     else
       archivo=`$("$i")`
       if [ -e $archivo ];
@@ -33,6 +35,7 @@ else
         echo "No existe el archivo $archivo "
         let inexistentes++
       fi
+      let indice++
     fi
   done  
   echo "Cantidad de archivos inexistentes: $inexistentes "
