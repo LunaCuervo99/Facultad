@@ -21,7 +21,6 @@ else
     let j++
   done
   case $1 in 
-  do
     "-b")
       if [ $2 -gt $(expr ${#vector[*]} -1) ];
       then
