@@ -11,3 +11,37 @@
 #elimina el archivo del arreglo y también del FileSystem. Debe validar que el archivo exista en el arreglo.
 #En caso de no existir, imprime el mensaje de error “Archivo no encontrado” y devuelve como valor de retorno 10
 
+arreglo=()
+indice=0
+for i in $(find /home -name "*.doc")
+do
+  arreglo[indice]=$i
+  let indice++
+done 
+
+function verArchivo {
+  esta=0
+  for i in ${arreglo[*]}
+  do
+    if ( = $1)
+    then
+      esta=1
+      break
+    fi
+  done
+  if ( $esta -eq 1 )
+  then
+    cat $1
+  else
+    echo "Archivo no encontrado"
+    exit 5
+  fi
+}
+
+function cantidadArchivos {
+  echo "Cantidad de archivos con terminacion .doc dentro del directorio home: ${#arreglo[*]}"
+}
+
+function borrarArchivo {
+  
+}
