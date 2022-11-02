@@ -5,7 +5,7 @@
 #caso de que no exista el archivo/directorio cree un directorio con el nombre recibido
 #como parámetro.
 
-if [[ $# -eq 1 ]]; then
+if [[ $# -lt 1 ]]; then
 	echo "No se pasaron parametros"
 	exit 1
 fi
