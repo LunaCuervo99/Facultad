@@ -4,7 +4,7 @@
 #como parámetros. El script debe controlar que los dos parámetros sean enviados.
 
 if [[ $# -lt 2 ]]; then
-	echo "No se pasaron la cantidad correcta de parametros"
+	echo "No se paso la cantidad correcta de parametros"
 	exit 1
 fi
 
