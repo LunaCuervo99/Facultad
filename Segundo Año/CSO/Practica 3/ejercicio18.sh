@@ -13,14 +13,12 @@ then
     else
         while true
         do
-            sleep 10 #el comando sleep duerme la maquina durante el tiempo dicho
-            if [ $( who | cut -f 1 | grep -w $1 | wc -l ) -eq 1 ];
+            seLogueo=`who | grep $1 | wc -l`
+            if [ $seLogueo != 0 ]
             then
-                echo "Usuario $1 logueado en el sistema"
-            else 
-                echo "El usuario $1 no se conecto"
-                sleep 10s
+                echo "usuario $1 logueado"
             fi
+            sleep 10 
         done
     fi
 else
