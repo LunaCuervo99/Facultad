@@ -7,7 +7,7 @@
 if [ $# -eq 1]; 
 then
     cant=0
-    for i in $(ls /home); #Busco en el / todos los archivos que terminen con .extension
+    for i in $(ls /home; #Busco en el / todos los archivos que terminen con .extension
     do
         echo $i >> reporte.txt
         for j in (find -name "*.$1")
