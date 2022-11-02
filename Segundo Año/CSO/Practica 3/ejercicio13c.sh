@@ -10,11 +10,13 @@ if [[ $# -lt 1 ]]; then
 	exit 1
 fi
 
-if [ -d $1 ]; then
-    echo "$1 es un directorio"
-elsif [ -f $1 ]; then
-    echo "$1 es un archivo"
+if [ -e $1 ]; then
+   if [ -d $1 ]; then
+      echo "$1 es un directorio"
+   elsif [ -f $1 ]; then
+   	echo "$1 es un archivo"
+   fi
 else 
-    echo "$1 No existe"
-    mkdir $1
+   echo "$1 no existe"
+   mkdir $1
 fi
