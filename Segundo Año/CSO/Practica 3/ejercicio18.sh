@@ -13,8 +13,8 @@ then
     else
         while true
         do
-            seLogueo=`who | grep $1 | wc -l`
-            if [ $seLogueo != 0 ]
+            logueado=$(who | grep $1 | wc -l)
+            if [ $logueado != 0 ]
             then
                 echo "usuario $1 logueado"
             fi
