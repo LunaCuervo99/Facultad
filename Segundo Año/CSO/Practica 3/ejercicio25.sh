@@ -33,11 +33,7 @@ else
       echo "Longitud: ${#vector[*]}"
     ;;
     "-i")
-      echo "Elementos del vector: "
-      for i in  ${vector[*]}
-      do
-        echo "$i"
-      done 
+      echo "Elementos del vector:  ${vector[*]}"
     ;;
   esac
 fi
