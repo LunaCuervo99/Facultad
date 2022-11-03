@@ -13,7 +13,7 @@ if [ $(cat /etc/passwd | grep $1 | cut -d ":" -f1 | wc -l) -eq 0 ]; then
 else
     contador=0
     arch="/tmp/acces-$1.log"
-    while [ $contador -lt 10 ]  
+    while [ $contador -lt 30 ]  
     do
         seLogueo=$( who | grep $1 | wc -l)
         if [ $seLogueo != 0 ];
@@ -22,7 +22,7 @@ else
             echo "$1 $(date)" >> $arch
             let contador++
         fi
-        sleep 5s
+        sleep 30s
     done 
     echo $contador
     exit 0
