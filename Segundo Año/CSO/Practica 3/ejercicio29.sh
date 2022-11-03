@@ -14,9 +14,9 @@
 arreglo=()
 
 function verArchivo(){
-	for ((i=0;i<${#array[@]};i++))
+	for ((i=0;i<${#arreglo[@]};i++))
 	do
-		if [ $1 = ${array[i]} ];
+		if [ $1 = ${arreglo[i]} ];
 		then
 			echo "Se encontro el archivo $1"
 			return 0
@@ -33,20 +33,20 @@ function cantidadArchivos {
 
 function borrarArchivo() {
 	pos=0
-	for file in ${array[*]}
+	for file in ${arreglo[*]}
 	do
-		if [ $1 == ${array[pos]} ];
+		if [ $1 == ${arreglo[pos]} ];
 		then
 			echo "Quiere eliminar el archivo $1 logicamente?"
 			select opcion in Si No
 			do	
 			case $opcion in
 			"Si")
-				unset array[pos]
+				unset arreglo[pos]
 				return 0
 			;;
 			"No")
-				unset array[pos]
+				unset arreglo[pos]
 				rm $1
 				return 0
 			;;
@@ -59,7 +59,7 @@ function borrarArchivo() {
 			let pos++
 		fi
 	done
-	if [ $pos -ge ${#array[@]} ];
+	if [ $pos -ge ${#arreglo[@]} ];
 	then
 		echo "Archivo $1 no encontrado"
 		return 10
@@ -70,7 +70,7 @@ function borrarArchivo() {
 for file in $(find /home -name "*.doc")
 do
 	nombre=$(basename $file)
-	array+=($nombre)
+	arreglo+=($nombre)
 done
 
 verArchivo ejercicioBORRAR.doc
