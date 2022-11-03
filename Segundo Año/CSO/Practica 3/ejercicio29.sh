@@ -12,36 +12,68 @@
 #En caso de no existir, imprime el mensaje de error “Archivo no encontrado” y devuelve como valor de retorno 10
 
 arreglo=()
-indice=0
-for i in $(find /home -name "*.doc")
-do
-  arreglo[indice]=$i
-  let indice++
-done 
 
-function verArchivo {
-  esta=0
-  for i in ${arreglo[*]}
-  do
-    if ( = $1)
-    then
-      esta=1
-      break
-    fi
-  done
-  if ( $esta -eq 1 )
-  then
-    cat $1
-  else
-    echo "Archivo no encontrado"
-    exit 5
-  fi
-}
+function verArchivo(){
+	for ((i=0;i<${#array[@]};i++))
+	do
+		if [ $1 = ${array[i]} ];
+		then
+			echo "Se encontro el archivo $1"
+			return 0
+		fi
+	done
+	echo "Archivo $1 no encontrado"
+	return 5
+} 
 
 function cantidadArchivos {
   echo "Cantidad de archivos con terminacion .doc dentro del directorio home: ${#arreglo[*]}"
 }
 
-function borrarArchivo {
-  
+
+function borrarArchivo() {
+	pos=0
+	for file in ${array[*]}
+	do
+		if [ $1 == ${array[pos]} ];
+		then
+			echo "Quiere eliminar el archivo $1 logicamente?"
+			select opcion in Si No
+			do	
+			case $opcion in
+			"Si")
+				unset array[pos]
+				return 0
+			;;
+			"No")
+				unset array[pos]
+				rm $1
+				return 0
+			;;
+			*)
+				echo "Opcion incorrecta"
+				return 1
+			esac
+			done
+		else
+			let pos++
+		fi
+	done
+	if [ $pos -ge ${#array[@]} ];
+	then
+		echo "Archivo $1 no encontrado"
+		return 10
+	fi
 }
+
+#Lleno el arreglo
+for file in $(find /home -name "*.doc")
+do
+	nombre=$(basename $file)
+	array+=($nombre)
+done
+
+verArchivo ejercicioBORRAR.doc
+cantidadArchivos
+borrarArchivo ejercicioBORRAR.doc
+cantidadArchivos
